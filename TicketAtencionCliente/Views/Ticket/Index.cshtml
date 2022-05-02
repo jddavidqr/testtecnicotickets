@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TicketAtencionCliente.Entities.TicketAtencion>
+@{
+	ViewData["Title"] = "Ticket";
+}
+<h1>Ticket de atención al cliente</h1>
+<form asp-controller="Ticket" asp-action="RegistrarTicket">
+	<table>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input autofocus id="id" type="number" class="form-control" maxlength="10" name="id" placeholder="Id" />
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<input autofocus id="nombre" type="text" class="form-control" maxlength="20" name="nombre" placeholder="Nombre" />
+			</td>
+			<td>&nbsp;</td>
+			<td>
+				<button id="btnGuardar" type="submit" class="btn btn-success" value="Guardar">Guardar</button>
+			</td>
+		</tr>
+	</table>
+</form>
+<h2>Cola 1</h2>
+<table>
+	<tr>
+		@foreach (var item in Model)
+		{
+			if (item.ColaAsignada == 1 && item.Estado == 0)
+			{
+				<td style="border: 1px solid black;">
+					@item.Id
+					<br>
+					@item.Nombres
+				</td>
+			}
+		}
+	</tr>
+</table>
+<h2>Cola 2</h2>
+<table>
+	<tr>
+		@foreach (var item in Model)
+		{
+			if (item.ColaAsignada == 2 && item.Estado == 0)
+			{
+				<td style="border: 1px solid black;">
+					@item.Id
+					<br>
+					@item.Nombres
+				</td>
+			}
+		}
+	</tr>
+</table>
+@Html.Raw(TempData["msg"])
